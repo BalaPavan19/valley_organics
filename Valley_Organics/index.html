@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bhai Organics</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Navigation Styles */
+.nav {
+    background-color: #C2B280;
+    color: #fff;
+    padding: 8px;
+    display: flex; /* Make nav items arrange horizontally */
+    justify-content: space-between; /* Space between logo and other elements */
+    align-items: center; /* Align items vertically */
+}
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+    gap: 20px; /* Adjust this value to control the spacing between items */
+}
+.logo {
+    height: 50px;
+    transition: transform 0.3s ease; /* Add transition for logo */
+}
+.logo.active {
+    transform: scale(1.1); /* Increase size on hover */
+}
+.search-bar {
+    height: 40px;
+    line-height: 28px;
+    padding: 0 1rem;
+    width: 100%;
+    padding-left: 2.5rem;
+    border: 2px solid transparent;
+    border-radius: 8px;
+    outline: none;
+    background-color: #ffffff;
+    color: #0d0c22;
+    box-shadow: 0 0 5px #C1D9BF, 0 0 0 10px #f5f5f5eb;
+    transition: .3s ease;
+}
+.search-bar::placeholder {
+    color: #777;
+}
+.search-icon {
+    position: absolute;
+    left: 1rem;
+    fill: #777;
+    width: 1rem;
+    height: 1rem;
+}
+
+.city-selection {
+    padding: 5px;
+    border: none;
+    border-radius: 5px;
+    width: 150px; /* Adjust width as needed */
+}
+.profile a {
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    border-radius: 5px;
+}
+.profile a:hover {
+    background-color: #45a049;
+}
+.nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+.nav li {
+    margin: 0 20px;
+}
+.nav a {
+    color: #fff;
+    text-decoration: none;
+}
+.nav a:hover {
+    color: #ccc;
+}
+
+
+        /* Main Content Styles */
+        .main {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .product {
+            margin: 20px;
+            width: 250px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .product img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 10px 10px 0 0;
+        }
+        .product h2 {
+            font-size: 18px;
+            margin-top: 0;
+        }
+        .product p {
+            font-size: 14px;
+            color: #666;
+        }
+        .price {
+            font-size: 16px;
+            font-weight: bold;
+            color: #333;
+        }
+        .add-to-cart {
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+            border-radius: 5px;
+        }
+        .add-to-cart:hover {
+            background-color: #3e8e41;
+        }
+
+        /* Cart Styles */
+        .cart {
+            position: fixed;
+            top: 60px; /* Adjust top position */
+            right: 10px;
+            background-color: #24191c;
+            color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            width: 250px;
+        }
+        .cart h2 {
+            margin-top: 0;
+        }
+        .cart ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        .cart li {
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .cart li span {
+            font-size: 14px;
+        }
+        .cart li button {
+            background-color: #f44336;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            font-size: 12px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .cart li button:hover {
+            background-color: #e53935;
+        }
+        .cart p {
+            font-size: 16px;
+            margin: 10px 0;
+        }
+        .checkout {
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .checkout:hover {
+            background-color: #3e8e41;
+        }
+
+        /* Category Section Styles */
+        .categories {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap; /* Allow categories to wrap */
+            justify-content: space-around; /* Distribute categories evenly */
+        }
+        .categories-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+            width: 90%; /* Adjust width as needed */
+            margin-left: auto;
+            margin-right: auto; /* Center the container */
+        }
+        .category {
+            margin: 5px; /* Reduce the margin */
+            text-align: center;
+            cursor: pointer;
+            width: 120px; /* Reduced width for categories */
+            /* border: 2px solid #ddd; */ /* Remove border to make it square */
+            border: none; /* Remove border to make it square */
+            transition: transform 0.3s ease; /* Add transition for category */
+        }
+        .category:hover {
+            transform: scale(0.8); /* Increase size on hover */
+            background-color: #ffffff; /* Add light brown color on hover */
+        }
+        .category.active {
+            transform: scale(0.8); /* Increase size on hover */
+        }
+        .category img {
+            width: 80px; /* Reduced image size */
+            height: 80px; /* Reduced image size */
+            border-radius: 0; /* Remove rounded corners to make it a square */
+        }
+
+        /* Slider Styles */
+        .slider {
+            margin-top: 20px;
+            width: 90%;
+            margin-left: auto;
+            margin-right: auto;
+            overflow: hidden;
+        }
+        .slide {
+            display: flex;
+            width: 300%;
+            transition: transform 0.5s ease;
+        }
+        .slide img {
+            width: 33.33%;
+            height: 200px;
+            object-fit: cover;
+        }
+        .prev, .next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            padding: 10px;
+            cursor: pointer;
+        }
+        .prev {
+            left: 10px;
+        }
+        .next {
+            right: 10px;
+        }
+      #customer-reviews {
+        margin-top: 30px;
+        padding: 20px;
+        background-color: #f8f8f8;
+        display: flex;
+        flex-direction: column; /* Arrange reviews vertically */
+        align-items: center;
+      }
+
+      .reviews-container {
+        display: flex; /* Arrange reviews horizontally */
+        flex-wrap: wrap; /* Allow reviews to wrap */
+        justify-content: center;
+        gap: 20px; /* Add spacing between reviews */
+        overflow-x: auto; /* Enable horizontal scrolling */
+      }
+
+      .review {
+        border: 1px solid #ddd;
+        padding: 20px;
+        margin: 10px;
+        width: 300px;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+
+      .review h3 {
+        margin-top: 0;
+      }
+
+      .rating {
+        display: flex;
+        align-items: center;
+      }
+
+      .rating i {
+        font-size: 16px;
+        color: gold;
+        margin-right: 5px;
+      }
+
+      /* Contact Details Section */
+      #contact-details {
+        background-color: #f5f5f5; /* Light gray background */
+        padding: 20px;
+        margin-top: 20px;
+        border-radius: 8px;
+      }
+
+      #contact-details h2 {
+        margin-top: 0;
+      }
+
+      #contact-details p {
+        margin-bottom: 10px;
+      }
+
+      #contact-details a {
+        color: #007bff;
+        text-decoration: none;
+      }
+
+      #contact-details a:hover {
+        text-decoration: underline;
+      }
+    </style>
+</head>
+<marquee behavior="scroll" direction="left" style="color: white; background-color:RGB(53,31,25);">
+    Bhai Organics | Pure as Mother's Love
+  </marquee>
+  
+<body>
+    <nav class="nav">
+        <div class="nav-container">
+            <img src="C:/Users/balap/Desktop/Valley Organics/Bhai Organics.png" alt="Bhai Organics Logo" class="logo" id="logo">
+            <div class="group">
+                
+                    <g>
+                        <path d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z"></path>
+                    </g>
+                </svg>
+                <input placeholder="Search" type="search" class="search-bar">
+            </div>
+            <div class="city-container">
+                <select class="city-selection" id="city-selection">
+                    <option value="">Select City</option>
+                    <option value="Hyderbad">Hyderbad</option>
+                    <option value="Guntur">Guntur</option>
+                    <option value="bangalore">Bangalore</option>
+                    <!-- Add more cities and pincodes as needed -->
+                </select>
+            </div>
+        </div>
+    </nav>
+
+    <section class="categories-container">
+        <div class="categories">
+            <div class="category" onclick="window.location.href = 'category-rice.html'; highlightLogo(this)" id="rice-category">
+                <img src="C:\Users\balap\Desktop\Valley Organics\Rice.png" alt="Rice">
+                <p>Rice</p>
+            </div>
+            <div class="category" onclick="window.location.href = 'category-vegetables.html'; highlightLogo(this)" id="vegetable-category">
+                <img src="C:\Users\balap\Desktop\Valley Organics\Veg.png" alt="Vegetables">
+                <p>Vegetables</p>
+            </div>
+            <div class="category" onclick="window.location.href = 'category-grains.html'; highlightLogo(this)" id="grains-category">
+                <img src="C:\Users\balap\Desktop\Valley Organics\Pulses.png" alt="Grains">
+                <p>Grains & Pulses</p>
+            </div>
+            <div class="category" onclick="window.location.href = 'category-oil.html'; highlightLogo(this)" id="oil-category">
+                <img src="C:\Users\balap\Desktop\Valley Organics\Oil.png" alt="Oil&Ghee">
+                <p>Oil&Ghee</p>
+            </div>
+            <div class="category" onclick="window.location.href = 'category-millets.html'; highlightLogo(this)" id="millet-category">
+                <img src="C:\Users\balap\Desktop\Valley Organics\Health.png" alt="Millets">
+                <p>Millet&Health</p>
+            </div>
+            <div class="category" onclick="window.location.href = 'category-combos.html'; highlightLogo(this)" id="combo-category">
+                <img src="C:\Users\balap\Desktop\Valley Organics\Combos.png" alt="Combos">
+                <p>Combos & Discounts</p>
+            </div>
+        </div>
+    </section>
+
+
+<h1> Most Orders </h1>
+    <main class="main">
+        <div class="product">
+            <img src="C:\Users\balap\Desktop\Valley Organics\Mango.jpeg" alt="Mangoes">
+            <h2>Mangoes</h2>
+            <p>Ripe and creamy organic mangoes</p>
+            <p class="price">₹250.00/kg</p>
+            <button class="add-to-cart" data-product-name="Mangoes" data-product-price="250.00">Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="C:\Users\balap\Desktop\Valley Organics\Millet.jpg" alt="Millet">
+            <h2>Millet</h2>
+            <p>Thick and soft powdered</p>
+            <p class="price">₹100.00/kg</p>
+            <button class="add-to-cart" data-product-name="Millet" data-product-price="100.00">Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="C:\Users\balap\Desktop\Valley Organics\Brownrice.jpg" alt="Brown Rice">
+            <h2>Brown Rice</h2>
+            <p>Best and health prescribed</p>
+            <p class="price">₹80.00/kg</p>
+            <button class="add-to-cart" data-product-name="Brown Rice" data-product-price="80.00">Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="C:\Users\balap\Desktop\Valley Organics\Masala.jpg" alt="Masala">
+            <h2>Masala</h2>
+            <p>Best and non presevative</p>
+            <p class="price">₹40.00/kg</p>
+            <button class="add-to-cart" data-product-name="Masala" data-product-price="40.00">Add to Cart</button>
+        </div>
+        <!-- Add more products here -->
+
+    </main>
+    <aside class="cart">
+        <h2>Cart</h2>
+        <ul id="cart-items">
+            <!-- Cart items will be dynamically added here -->
+        </ul>
+        <p id="cart-total">Total: ₹0.00</p>
+        <button class="checkout">Checkout</button>
+    </aside>
+
+    <section id="customer-reviews">
+        <h2>Customer Reviews</h2>
+        <div class="reviews-container">
+          <!-- Reviews will be added here -->
+        </div>
+      </section>
+
+      <section id="contact-details">
+        <h2>Contact Details</h2>
+        <p><strong>Address:</strong> In ur heart</p>
+        <p><strong>Phone no:</strong> Ur Age</p>
+        <p><strong>Email:</strong> <a href="mailto:[bhai@gmail.com]">[bhai@gmail.com]</a></p>
+      </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const cartItems = {};
+            const cartItemsContainer = document.getElementById('cart-items');
+            const cartTotalElement = document.getElementById('cart-total');
+            const addToCartButtons = document.querySelectorAll('.add-to-cart');
+            const logo = document.getElementById('logo');
+            const categories = document.querySelectorAll('.category');
+            const citySelection = document.getElementById('city-selection');
+            const reviewsContainer = document.getElementById('customer-reviews');
+
+            addToCartButtons.forEach((button) => {
+                button.addEventListener('click', () => {
+                    const productName = button.dataset.productName;
+                    const productPrice = parseFloat(button.dataset.productPrice);
+
+                    if (cartItems[productName]) {
+                        cartItems[productName].quantity += 1;
+                    } else {
+                        cartItems[productName] = { price: productPrice, quantity: 1 };
+                    }
+
+                    updateCart();
+                });
+            });
+
+            function updateCart() {
+                cartItemsContainer.innerHTML = '';
+                let total = 0;
+
+                for (const itemName in cartItems) {
+                    if (cartItems.hasOwnProperty(itemName)) {
+                        const item = cartItems[itemName];
+                        total += item.price * item.quantity;
+
+                        const cartItem = document.createElement('li');
+                        cartItem.innerHTML = `
+                            <span>${itemName} x ${item.quantity}</span>
+                            <button onclick="removeItem('${itemName}')">Remove</button>
+                        `;
+                        cartItemsContainer.appendChild(cartItem);
+                    }
+                }
+
+                cartTotalElement.textContent = `Total: ₹${total.toFixed(2)}`;
+            }
+
+            window.removeItem = (itemName) => {
+                if (cartItems[itemName].quantity > 1) {
+                    cartItems[itemName].quantity -= 1;
+                } else {
+                    delete cartItems[itemName];
+                }
+                updateCart();
+            };
+
+            // Highlight Logo function
+            function highlightLogo(category) {
+                categories.forEach(cat => {
+                    cat.classList.remove('active'); // Remove active class from all categories
+                });
+                category.classList.add('active'); // Add active class to the clicked category
+
+                logo.classList.add('active'); // Highlight logo
+                setTimeout(() => {
+                    logo.classList.remove('active'); // Remove highlighting after a short delay
+                }, 300); 
+            }
+
+            // Customer Reviews Section
+            // Sample customer reviews (replace with your actual data)
+            const reviews = [
+                {
+                    name: "Bala",
+                    review: "I love the quality of the products from Bhai Organics. They are fresh and flavorful! Highly recommend them.",
+                    rating: 5,
+                },
+                {
+                    name: "Sai Varma",
+                    review: "I've been a customer of Bhai Organics for years, and I've never been disappointed. Their service is excellent, and the prices are reasonable.",
+                    rating: 4,
+                },
+                {
+                    name: "Revi Sena",
+                    review: "I was hesitant to try organic products at first, but Bhai Organics won me over. Their products are top-notch, and I feel good knowing I'm supporting a sustainable brand.",
+                    rating: 5,
+                },
+            ];
+
+            // Function to generate HTML for a single review
+            function createReviewElement(review) {
+                const reviewElement = document.createElement('div');
+                reviewElement.classList.add('review');
+
+                reviewElement.innerHTML = `
+                    <h3>${review.name}</h3>
+                    <p>${review.review}</p>
+                    <div class="rating">
+                        ${generateRatingStars(review.rating)}
+                    </div>
+                `;
+
+                return reviewElement;
+            }
+
+            // Function to generate rating stars HTML
+            function generateRatingStars(rating) {
+                let stars = '';
+                for (let i = 0; i < rating; i++) {
+                    stars += '<i class="fas fa-star"></i>';
+                }
+                for (let i = rating; i < 5; i++) {
+                    stars += '<i class="far fa-star"></i>';
+                }
+                return stars;
+            }
+
+            // Display customer reviews
+            reviews.forEach(review => {
+                const reviewElement = createReviewElement(review);
+                reviewsContainer.appendChild(reviewElement);
+            });
+
+
+        });
+    </script>
+    <div id="root"></div>
+</body>
+</html>

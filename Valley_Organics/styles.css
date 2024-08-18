@@ -1,0 +1,334 @@
+
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Navigation Styles */
+.nav {
+background-color: #C2B280;
+color: #fff;
+padding: 8px;
+display: flex; /* Make nav items arrange horizontally */
+justify-content: space-between; /* Space between logo and other elements */
+align-items: center; /* Align items vertically */
+}
+.nav-container {
+display: flex;
+justify-content: space-between;
+align-items: center;
+margin-bottom: 8px;
+gap: 20px; /* Adjust this value to control the spacing between items */
+}
+.logo {
+height: 50px;
+transition: transform 0.3s ease; /* Add transition for logo */
+}
+.logo.active {
+transform: scale(1.1); /* Increase size on hover */
+}
+.search-bar {
+height: 40px;
+line-height: 28px;
+padding: 0 1rem;
+width: 100%;
+padding-left: 2.5rem;
+border: 2px solid transparent;
+border-radius: 8px;
+outline: none;
+background-color: #ffffff;
+color: #0d0c22;
+box-shadow: 0 0 5px #C1D9BF, 0 0 0 10px #f5f5f5eb;
+transition: .3s ease;
+}
+.search-bar::placeholder {
+color: #777;
+}
+.search-icon {
+position: absolute;
+left: 1rem;
+fill: #777;
+width: 1rem;
+height: 1rem;
+}
+
+.city-selection {
+padding: 5px;
+border: none;
+border-radius: 5px;
+width: 150px; /* Adjust width as needed */
+}
+.profile a {
+color: #fff;
+text-decoration: none;
+padding: 10px 20px;
+background-color: #4CAF50;
+border-radius: 5px;
+}
+.profile a:hover {
+background-color: #45a049;
+}
+.nav ul {
+list-style: none;
+margin: 0;
+padding: 0;
+display: flex;
+justify-content: center;
+}
+.nav li {
+margin: 0 20px;
+}
+.nav a {
+color: #fff;
+text-decoration: none;
+}
+.nav a:hover {
+color: #ccc;
+}
+
+
+/* Main Content Styles */
+.main {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.product {
+    margin: 20px;
+    width: 250px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.product img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 10px 10px 0 0;
+}
+.product h2 {
+    font-size: 18px;
+    margin-top: 0;
+}
+.product p {
+    font-size: 14px;
+    color: #666;
+}
+.price {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+}
+.add-to-cart {
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px;
+    border-radius: 5px;
+}
+.add-to-cart:hover {
+    background-color: #3e8e41;
+}
+
+/* Cart Styles */
+.cart {
+    position: fixed;
+    top: 60px; /* Adjust top position */
+    right: 10px;
+    background-color: #24191c;
+    color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    width: 250px;
+}
+.cart h2 {
+    margin-top: 0;
+}
+.cart ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.cart li {
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.cart li span {
+    font-size: 14px;
+}
+.cart li button {
+    background-color: #f44336;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    font-size: 12px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+.cart li button:hover {
+    background-color: #e53935;
+}
+.cart p {
+    font-size: 16px;
+    margin: 10px 0;
+}
+.checkout {
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+.checkout:hover {
+    background-color: #3e8e41;
+}
+
+/* Category Section Styles */
+.categories {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap; /* Allow categories to wrap */
+    justify-content: space-around; /* Distribute categories evenly */
+}
+.categories-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+    width: 90%; /* Adjust width as needed */
+    margin-left: auto;
+    margin-right: auto; /* Center the container */
+}
+.category {
+    margin: 5px; /* Reduce the margin */
+    text-align: center;
+    cursor: pointer;
+    width: 120px; /* Reduced width for categories */
+    /* border: 2px solid #ddd; */ /* Remove border to make it square */
+    border: none; /* Remove border to make it square */
+    transition: transform 0.3s ease; /* Add transition for category */
+}
+.category:hover {
+    transform: scale(0.8); /* Increase size on hover */
+    background-color: #ffffff; /* Add light brown color on hover */
+}
+.category.active {
+    transform: scale(0.8); /* Increase size on hover */
+}
+.category img {
+    width: 80px; /* Reduced image size */
+    height: 80px; /* Reduced image size */
+    border-radius: 0; /* Remove rounded corners to make it a square */
+}
+
+/* Slider Styles */
+.slider {
+    margin-top: 20px;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    overflow: hidden;
+}
+.slide {
+    display: flex;
+    width: 300%;
+    transition: transform 0.5s ease;
+}
+.slide img {
+    width: 33.33%;
+    height: 200px;
+    object-fit: cover;
+}
+.prev, .next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+}
+.prev {
+    left: 10px;
+}
+.next {
+    right: 10px;
+}
+#customer-reviews {
+margin-top: 30px;
+padding: 20px;
+background-color: #f8f8f8;
+display: flex;
+flex-direction: column; /* Arrange reviews vertically */
+align-items: center;
+}
+
+.reviews-container {
+display: flex; /* Arrange reviews horizontally */
+flex-wrap: wrap; /* Allow reviews to wrap */
+justify-content: center;
+gap: 20px; /* Add spacing between reviews */
+overflow-x: auto; /* Enable horizontal scrolling */
+}
+
+.review {
+border: 1px solid #ddd;
+padding: 20px;
+margin: 10px;
+width: 300px;
+border-radius: 8px;
+box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.review h3 {
+margin-top: 0;
+}
+
+.rating {
+display: flex;
+align-items: center;
+}
+
+.rating i {
+font-size: 16px;
+color: gold;
+margin-right: 5px;
+}
+
+/* Contact Details Section */
+#contact-details {
+background-color: #f5f5f5; /* Light gray background */
+padding: 20px;
+margin-top: 20px;
+border-radius: 8px;
+}
+
+#contact-details h2 {
+margin-top: 0;
+}
+
+#contact-details p {
+margin-bottom: 10px;
+}
+
+#contact-details a {
+color: #007bff;
+text-decoration: none;
+}
+
+#contact-details a:hover {
+text-decoration: underline;
+}
